@@ -14,4 +14,5 @@ https://skkuse-cinemate.vercel.app/
 | 정다연 | FrontEnd |
 
 ## Presentation
-파일
+[씨네메이트.pdf](https://github.com/user-attachments/files/28866664/default.pdf)
+
