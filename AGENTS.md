@@ -18,7 +18,7 @@
 - 사용자는 프론트엔드 구현 세부를 Codex에게 위임한다.
 - Codex는 기존 UI/UX 패턴을 먼저 파악한 뒤 구현한다.
 - 사용자가 명시하지 않은 세부 UI는 Next.js, React, 접근성, 반응형 UI 관점에서 합리적으로 결정한다.
-- 문서 수정 작업 시 `docs/software-requirements-spec/**`는 아카이브된 산출물로 간주하고 수정하지 않는다.
+- 문서 수정 작업 시 `docs/presentation/software-requirements-spec/**`는 아카이브된 산출물로 간주하고 수정하지 않는다.
 
 # 로그 규칙
 
@@ -81,7 +81,7 @@
 - 서버 측 DB 접근은 `server/db`의 Drizzle 클라이언트와 도메인별 `repository`를 통해 수행한다.
 - Supabase Auth와 Storage는 Supabase client를 사용하고, 일반 DB 비즈니스 쿼리는 Drizzle을 우선 사용한다.
 - Vercel Serverless 환경에서는 Supabase Connection Pooler 사용을 전제로 하고, Drizzle 연결에는 transaction pool 제약을 고려한다.
-- DB schema 변경은 Drizzle schema(`server/db/schema.ts`)와 Supabase migration SQL(`supabase/migrations/*.sql`)에 항상 함께 반영한다.
+- DB schema 변경은 Drizzle schema(`src/server/db/schema.ts`)와 Supabase migration SQL(`supabase/migrations/*.sql`)에 항상 함께 반영한다.
 - `drizzle-kit generate`는 사용하지 않고, `supabase/migrations/*.sql`은 직접 작성한다.
 - RLS, grant, trigger, `auth.users` FK처럼 Supabase 전용인 항목은 migration SQL에서 관리한다.
 - 클라이언트에서 Supabase table에 직접 접근하지 않고, 데이터 접근은 Next.js API와 서버 repository를 통해 수행한다.

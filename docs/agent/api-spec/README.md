@@ -13,7 +13,7 @@
 | Request | path, query, body에 포함될 주요 값 |
 | Response | 화면 렌더링에 필요한 주요 필드 |
 | 관련 화면 | API를 사용하는 Next.js 화면 또는 공통 컴포넌트 |
-| 관련 DB 문서 | API 구현 시 참조할 `docs/db-schema/**` 문서 |
+| 관련 DB 문서 | API 구현 시 참조할 `docs/agent/db-schema/**` 문서 |
 
 상세 JSON Schema보다 구현에 필요한 요청값과 응답 필드를 중심으로 작성한다. 공통 응답 타입은 [common.md](./common.md)를 참조한다.
 

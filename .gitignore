@@ -30,11 +30,11 @@ next-env.d.ts
 # local datasets
 /ml-latest/
 /tmdb-api.json
-/data/seeds/movie-catalog/cache/
-/data/seeds/movie-catalog/reports/
-/data/seeds/movie-credits/cache/
-/data/seeds/movie-credits/reports/
-/data/seeds/movie-recommendation/reports/
+/seeds/movie-catalog/cache/
+/seeds/movie-catalog/reports/
+/seeds/movie-credits/cache/
+/seeds/movie-credits/reports/
+/seeds/movie-recommendation/reports/
 
 # local Supabase workspace
 /supabase/.temp/
