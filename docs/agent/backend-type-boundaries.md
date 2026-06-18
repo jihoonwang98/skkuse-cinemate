@@ -363,7 +363,7 @@ const service = createReviewService({
 Row 타입은 Drizzle select 결과 같은 영속성 모델이다. repository 내부에서만 다룬다.
 
 ```ts
-// server/db/schema.ts
+// src/server/db/schema.ts
 export type ProfileRow = typeof profiles.$inferSelect
 ```
 

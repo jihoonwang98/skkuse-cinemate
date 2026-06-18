@@ -34,7 +34,7 @@ MovieLens Tag Genome의 tag master 테이블이다. 추천 채팅에서 사용�
 - MVP embedding 모델은 `text-embedding-3-small`로 고정한다.
 - `tag_id`, `embedding_model` 조합은 unique로 관리한다.
 - vector search 성능을 위해 `embedding` 컬럼에 vector index를 둔다.
-- embedding input 원문은 DB 컬럼에 중복 저장하지 않고 `data/seeds/recommendation-chat/...` 하위의 tag embedding file로 관리한다.
+- embedding input 원문은 DB 컬럼에 중복 저장하지 않고 `seeds/recommendation-chat/...` 하위의 tag embedding file로 관리한다.
 
 권한:
 
