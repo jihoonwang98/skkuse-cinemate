@@ -44,7 +44,6 @@ export async function uploadCharacterImages() {
   for (const movieSeed of characterChatMovieSeeds) {
     const imageDir = path.join(
       ROOT_DIR,
-      "data",
       "seeds",
       "character-chat",
       "movies",

@@ -30,7 +30,6 @@ export async function loadPersonaPrompts(movieId: number, characters = character
   const promptsBySlug = new Map<string, string>()
   const promptDir = path.join(
     ROOT_DIR,
-    "data",
     "seeds",
     "character-chat",
     "movies",
