@@ -3,6 +3,7 @@ import {
   createRequestId,
   createRequestContextFromAuthUser,
   isMissingAuthSessionError,
+  isStaleAuthSessionError,
   mapSupabaseUser,
 } from "@/server/auth/request-context"
 import { createSupabaseServerClient } from "@/server/auth/supabase-server"
@@ -35,8 +36,12 @@ export async function GET() {
         throw error
       }
 
-      logger.warn("auth.stale_session", { requestId, route, error })
-      await clearStaleAuthSession(supabase, requestId)
+      if (isStaleAuthSessionError(error)) {
+        logger.warn("auth.stale_session", { requestId, route, error })
+        await clearStaleAuthSession(supabase, requestId)
+      } else {
+        logger.debug("auth.session_missing", { requestId, route, error })
+      }
     }
 
     const context = createRequestContextFromAuthUser(user, requestId)

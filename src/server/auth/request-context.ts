@@ -53,8 +53,19 @@ export function isMissingAuthSessionError(error: unknown) {
     authError.name === "AuthSessionMissingError" ||
     authError.message?.toLowerCase().includes("session missing") ||
     authError.message?.toLowerCase().includes("auth session missing") ||
-    authError.code === "refresh_token_not_found" ||
-    authError.code === "invalid_refresh_token" ||
+    isStaleAuthSessionError(error) ||
     authError.status === 401
+  )
+}
+
+export function isStaleAuthSessionError(error: unknown) {
+  if (typeof error !== "object" || error === null) {
+    return false
+  }
+
+  const authError = error as { code?: string }
+  return (
+    authError.code === "refresh_token_not_found" ||
+    authError.code === "invalid_refresh_token"
   )
 }

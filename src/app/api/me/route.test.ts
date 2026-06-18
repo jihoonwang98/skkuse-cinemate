@@ -4,6 +4,7 @@ const mocks = vi.hoisted(() => ({
   createRequestContextFromAuthUser: vi.fn(),
   createRequestId: vi.fn(),
   isMissingAuthSessionError: vi.fn(),
+  isStaleAuthSessionError: vi.fn(),
   mapSupabaseUser: vi.fn(),
   createSupabaseServerClient: vi.fn(),
   userService: {
@@ -17,6 +18,7 @@ vi.mock("@/server/auth/request-context", () => ({
   createRequestContextFromAuthUser: mocks.createRequestContextFromAuthUser,
   createRequestId: mocks.createRequestId,
   isMissingAuthSessionError: mocks.isMissingAuthSessionError,
+  isStaleAuthSessionError: mocks.isStaleAuthSessionError,
   mapSupabaseUser: mocks.mapSupabaseUser,
 }))
 
@@ -45,6 +47,7 @@ describe("GET /api/me", () => {
     vi.clearAllMocks()
     mocks.createRequestId.mockReturnValue("request-1")
     mocks.isMissingAuthSessionError.mockReturnValue(false)
+    mocks.isStaleAuthSessionError.mockReturnValue(false)
     mocks.createRequestContextFromAuthUser.mockReturnValue({ requestId: "request-1", user: null })
     mocks.mapSupabaseUser.mockReturnValue({ id: "user-1", email: "user@example.com", userMetadata: {} })
     mocks.createSupabaseServerClient.mockResolvedValue({
@@ -71,6 +74,27 @@ describe("GET /api/me", () => {
         },
       },
     })
+  })
+
+  it("treats missing auth session as debug unauthenticated flow", async () => {
+    const missingSessionError = { name: "AuthSessionMissingError", message: "Auth session missing!", status: 400 }
+    const signOut = vi.fn().mockResolvedValue({ error: null })
+    mocks.isMissingAuthSessionError.mockReturnValue(true)
+    mocks.isStaleAuthSessionError.mockReturnValue(false)
+    mocks.createSupabaseServerClient.mockResolvedValue({
+      auth: {
+        getUser: vi.fn().mockResolvedValue({ data: { user: null }, error: missingSessionError }),
+        signOut,
+      },
+    })
+
+    const response = await GET()
+
+    await expect(readResponse(response)).resolves.toEqual({
+      status: 200,
+      body: { authenticated: false, user: null },
+    })
+    expect(signOut).not.toHaveBeenCalled()
   })
 })
 
