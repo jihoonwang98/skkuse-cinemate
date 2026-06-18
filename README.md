@@ -13,6 +13,7 @@ https://skkuse-cinemate.vercel.app/
 | 서동규 | BackEnd |
 | 정다연 | FrontEnd |
 
-## Presentation
-[씨네메이트.pdf](https://github.com/user-attachments/files/28866664/default.pdf)
-
+## 발표자료
+- [디자인 명세서](docs/submission/design-spec/cinemate-design-spec.pdf)
+- [요구사항 명세서](docs/submission/software-requirements-spec/cinemate-requirements-spec.pdf)
+- [최종 발표 자료](docs/submission/cinemate-final-presentation.pdf)
