@@ -2,7 +2,7 @@ import { appendFile, mkdir, readFile, rm } from "node:fs/promises"
 import path from "node:path"
 import OpenAI from "openai"
 import { loadEnvFiles } from "./env"
-import { parseTagEmbeddingJsonl, type TagEmbeddingJsonlRow } from "./tag-embedding-jsonl"
+import { parseTagEmbeddingJsonl, type TagEmbeddingJsonlRow } from "./validate-tag-embedding-jsonl"
 
 const ROOT_DIR = process.cwd()
 const INPUT_FILE = path.join(ROOT_DIR, "seeds", "recommendation-chat", "movie-tag-embeddings.jsonl")

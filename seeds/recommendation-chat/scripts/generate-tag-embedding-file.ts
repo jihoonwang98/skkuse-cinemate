@@ -3,7 +3,7 @@ import { spawn } from "node:child_process"
 import os from "node:os"
 import path from "node:path"
 import { z } from "zod"
-import { parseTagEmbeddingJsonl } from "./tag-embedding-jsonl"
+import { parseTagEmbeddingJsonl } from "./validate-tag-embedding-jsonl"
 
 type SourceTag = {
   tagId: number

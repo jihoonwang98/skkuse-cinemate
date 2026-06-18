@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises"
 import path from "node:path"
 import { createClient } from "@supabase/supabase-js"
 import { loadEnvFiles } from "./env"
-import { parseTagEmbeddingJsonl } from "./tag-embedding-jsonl"
+import { parseTagEmbeddingJsonl } from "./validate-tag-embedding-jsonl"
 
 const ROOT_DIR = process.cwd()
 const INPUT_FILE = path.join(ROOT_DIR, "seeds", "recommendation-chat", "movie-tag-embeddings-with-vectors.jsonl")
