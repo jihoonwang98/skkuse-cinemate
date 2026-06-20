@@ -30,6 +30,7 @@ cp .env.example .env.local
 | `NEXT_PUBLIC_SUPABASE_URL`                   | Supabase 프로젝트 URL                       |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY`              | Supabase anon key                           |
 | `SUPABASE_SERVICE_ROLE_KEY`                  | 서버/seed 작업용 Supabase service role key  |
+| `SUPABASE_DB_PASSWORD`                       | Supabase CLI용 원격 DB 비밀번호              |
 | `SUPABASE_POOLER_DATABASE_URL`               | Supabase Postgres connection pooler URL     |
 | `OPENAI_API_KEY`                             | AI 추천/채팅 기능에 사용하는 OpenAI API key |
 | `OPENAI_RECOMMENDATION_CHAT_MODEL`           | 추천 채팅 LLM 모델                          |
