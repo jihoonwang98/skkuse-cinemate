@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
-import { mapSupportedMovieDto, normalizeSuggestedQuestions, selectRelevantEventContexts } from "./character-chat-rules"
-import type { CharacterChatEventContext, CharacterChatSupportedMovieRepoResult } from "./character-chat-types"
+import { mapSupportedMovieDto, normalizeSuggestedQuestions } from "./character-chat-rules"
+import type { CharacterChatSupportedMovieRepoResult } from "./character-chat-types"
 
 describe("character chat rules", () => {
   it("maps supported movie rows to screen DTOs", () => {
@@ -55,36 +55,8 @@ describe("character chat rules", () => {
     })
   })
 
-  it("selects relevant event contexts by Korean keyword score with stable tie ordering", () => {
-    const events = [
-      event(1, "고담 은행 강도", "조커가 은행을 습격한다."),
-      event(2, "Lau 체포", "Batman이 홍콩에서 Lau를 데려온다."),
-      event(3, "호송대 습격", "조커가 Harvey 호송대를 습격한다."),
-    ]
-
-    expect(
-      selectRelevantEventContexts({
-        message: "조커가 Harvey 호송대를 습격했을 때 어땠어?",
-        recentMessages: [],
-        events,
-      }).map((selected) => selected.eventOrder),
-    ).toEqual([3, 1, 2])
-  })
-
   it("normalizes suggested questions and falls back when empty", () => {
     expect(normalizeSuggestedQuestions([" 다음 질문 ", "", "다음 질문", "다른 질문"])).toEqual(["다음 질문", "다른 질문"])
     expect(normalizeSuggestedQuestions(["", " "])).toHaveLength(2)
   })
 })
-
-function event(eventOrder: number, title: string, summary: string): CharacterChatEventContext {
-  return {
-    eventOrder,
-    title,
-    summary,
-    role: "witness",
-    perspectiveSummary: summary,
-    emotionalImpact: "긴장",
-    knowledgeState: "사건을 알고 있다.",
-  }
-}

@@ -83,7 +83,20 @@ describe("character chat service", () => {
     expect(repository.createConversation).not.toHaveBeenCalled()
   })
 
-  it("generates a reply with persona, selected events, and recent messages before saving messages", async () => {
+  it("generates a reply with persona, all character events, and recent messages before saving messages", async () => {
+    const context = conversationContext()
+    context.events.push(
+      ...[2, 3, 4, 5].map((eventOrder) => ({
+        eventOrder,
+        title: `관련 사건 ${eventOrder}`,
+        summary: `현재 캐릭터가 참여한 사건 ${eventOrder}`,
+        role: "participant",
+        perspectiveSummary: `사건 ${eventOrder}에 대한 캐릭터 관점`,
+        emotionalImpact: "복합적",
+        knowledgeState: "사건을 알고 있다.",
+      })),
+    )
+    repository.findConversationContext.mockResolvedValueOnce(context)
     const service = createCharacterChatService(deps)
 
     await expect(
@@ -100,7 +113,7 @@ describe("character chat service", () => {
       expect.objectContaining({
         personaPrompt: "# 역할\nBruce Wayne",
         currentMessage: "조커가 호송대를 습격했을 때 어땠어?",
-        eventContexts: expect.arrayContaining([expect.objectContaining({ title: "호송대 습격" })]),
+        eventContexts: context.events,
         recentMessages: [{ senderType: "user", content: "Harvey는 어떤 사람이었어?" }],
       }),
     )

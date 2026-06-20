@@ -16,7 +16,6 @@ import {
   CHARACTER_CHAT_SUPPORTED_MOVIE_IDS,
   mapSupportedMovieDto,
   normalizeSuggestedQuestions,
-  selectRelevantEventContexts,
 } from "./character-chat-rules"
 import type {
   CharacterChatAvatarUrlSigner,
@@ -113,11 +112,6 @@ export function createCharacterChatService(deps: CharacterChatServiceDeps): Char
         throw new CharacterChatConversationNotFoundError()
       }
 
-      const eventContexts = selectRelevantEventContexts({
-        message: input.message,
-        recentMessages: conversationContext.recentMessages,
-        events: conversationContext.events,
-      })
       const reply = await generateReply(deps.llmClient, {
         movieTitle: conversationContext.movie.title,
         characterName: conversationContext.character.name,
@@ -125,7 +119,7 @@ export function createCharacterChatService(deps: CharacterChatServiceDeps): Char
         personaPrompt: conversationContext.character.personaPrompt,
         currentMessage: input.message,
         recentMessages: conversationContext.recentMessages,
-        eventContexts,
+        eventContexts: conversationContext.events,
       })
       const suggestedQuestions = normalizeSuggestedQuestions(reply.suggestedQuestions)
 
