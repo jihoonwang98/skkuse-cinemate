@@ -4,7 +4,7 @@
 
 ## Tag Genome
 
-Tag Genome은 영화마다 태그 점수 벡터를 제공하는 MovieLens 데이터다.
+Tag Genome은 각 영화가 여러 태그와 얼마나 관련 있는지를 점수로 나타낸 데이터다.
 
 ```text
 The Matrix = {
@@ -110,4 +110,3 @@ userId,movieId,tag,timestamp
 10,100,cyberpunk,1430666558
 11,100,mind bending,1430666505
 ```
-

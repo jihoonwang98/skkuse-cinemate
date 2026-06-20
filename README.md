@@ -129,6 +129,14 @@ pnpm dev
 
 기본 실행 주소는 `http://localhost:3000`입니다.
 
+## 핵심 기능 설명 문서
+
+1. [MovieLens 데이터셋](docs/reference/1.movielens-dataset.md)
+2. [Seed 데이터 구성](docs/reference/2.seed-overview.md)
+3. [맞춤 추천](docs/reference/3.personalized-recommendation.md)
+4. [캐릭터 채팅](docs/reference/4.character-chat.md)
+5. [AI 추천 채팅](docs/reference/5.ai-recommendation-chat.md)
+
 ## 👤 Developers
 
 | 이름   | 역할     |
