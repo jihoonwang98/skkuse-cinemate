@@ -140,6 +140,7 @@ pnpm dev
 
 ## 발표자료
 
+- [제안서](docs/submission/소공개_2조_제안서.pdf)
 - [디자인 명세서](docs/submission/design-spec/cinemate-design-spec.pdf)
 - [요구사항 명세서](docs/submission/software-requirements-spec/cinemate-requirements-spec.pdf)
 - [최종 발표 자료](docs/submission/cinemate-final-presentation.pdf)
